@@ -35,6 +35,9 @@ body{
 #menu3{
     position: absolute; left: 650px; top: 25px;
 }
+#menu4{
+    position: absolute; left: 850px; top: 25px;
+}
 #index_button{
     width: 10%;
 }
