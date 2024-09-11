@@ -6,6 +6,19 @@
     <title>Volleyball</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <style>
+      #popupMessage {
+        visibility: hidden;
+        background-color: #4CAF50; /* Green */
+        color: white;
+        text-align: center;
+        border-radius: 4px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px;
+        padding: 15px;
+      }
     </style>
 </head>
 <body>
@@ -27,7 +40,7 @@
             <input type="text" id="schoolclass" name="schoolclass" placeholder="TGG 12/2" required><br>
 
             <label for="teacher">Name des Klassenlehrers:</label>
-            <input type="text" id="teacher" name="teacher" placeholder="Frau Kerntke" required><br>
+            <input type="text" id="teacher" name="teacher" placeholder="Herr/Frau Mustermann" required><br>
 
             <label for="teamName">Name des Teams:</label>
             <input type="text" id="teamName" name="teamName" placeholder="Die Wilden Kerle" required><br>
@@ -54,9 +67,6 @@
         
               <label for="player5">Mitspieler/-in 5:</label>
               <input type="text" id="player5" name="player5" placeholder="Ben Mustermann" size="40"><br>
-              
-              <label for="player6">Mitspieler/-in 6:</label>
-              <input type="text" id="player6" name="player6" placeholder="Ben Mustermann" size="40"><br>
             </div>
         
             <!-- Buttons container -->
@@ -69,53 +79,108 @@
             </div>
         </form>
     </div>
-          <script>
-            let playerCount = 6;
-          
-            function addPlayer() {
-              playerCount++;
-          
-              // Create label and input for the new player
-              const newLabel = document.createElement("label");
-              newLabel.setAttribute("for", "player" + playerCount);
-              newLabel.innerText = "Teilnehmer " + playerCount + ":";
-          
-              const newInput = document.createElement("input");
-              newInput.type = "text";
-              newInput.id = "player" + playerCount;
-              newInput.name = "player" + playerCount;
-              newInput.placeholder = "Ben Mustermann"
-              newInput.size = 40
-          
-              // Create a line break
-              const lineBreak = document.createElement("br");
-          
-              // Append the new elements above the button container
-              const playersContainer = document.getElementById("players-container");
-              playersContainer.appendChild(newLabel);
-              playersContainer.appendChild(newInput);
-              playersContainer.appendChild(lineBreak);
-            }
-          
-            function submitForm(event) {
-              event.preventDefault();
-          
-              // Collect form data
-              const formData = new FormData(document.getElementById("myForm"));
-              const url = 'https://script.google.com/macros/s/AKfycbwcaCuFUU54EmGxG5sqiEdWJhIhFatrgS1iI0aO6RyLBJphrfJ_nCXf71HALKkrBRai/exec';
-          
-              fetch(url, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            })
-            .then(response => {
-                // Note: response is opaque
-                console.log("Request completed");
-            })
-            .catch(error => console.error('Error:', error));
-                }
-          </script>  
+    <div id="popupMessage">Submission Successful!</div>
+
+    <script>
+      const form = document.getElementById("myForm");
+      const submitButton = document.getElementById("submit-button");
+      const popupMessage = document.getElementById("popupMessage");
+
+      const cooldownPeriod = 90 * 1000; // 10 seconds cooldown
+      const cooldownKey = "submitCooldown";
+
+      // Check if there's a cooldown active on page load
+      const lastSubmitTime = localStorage.getItem(cooldownKey);
+      if (lastSubmitTime && new Date().getTime() - lastSubmitTime < cooldownPeriod) {
+          const remainingCooldown = cooldownPeriod - (new Date().getTime() - lastSubmitTime);
+          disableSubmitButton(remainingCooldown);
+      }
+
+      form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Show popup
+          popupMessage.style.visibility = "visible";
+          setTimeout(() => {
+              popupMessage.style.visibility = "hidden";
+          }, 2000);
+
+          // Clear form inputs
+          form.reset();
+
+          // Disable submit button and start countdown
+          disableSubmitButton(cooldownPeriod);
+
+          // Store the current time in localStorage
+          localStorage.setItem(cooldownKey, new Date().getTime());
+      });
+
+      function disableSubmitButton(duration) {
+          submitButton.disabled = true;
+          let remainingTime = Math.floor(duration / 1000); // Ensure whole seconds
+
+          // Update button text every second
+          const countdownInterval = setInterval(() => {
+              remainingTime--;
+              submitButton.innerText = `Teilnehmen (${remainingTime}s)`;
+
+              // If the countdown is done, enable the button again
+              if (remainingTime <= 0) {
+                  clearInterval(countdownInterval);
+                  submitButton.innerText = "Teilnehmen";
+                  submitButton.disabled = false;
+              }
+          }, 1000);
+      }
+  </script>
+  <script>
+    let playerCount = 5; // Start from Player 2 since Player 1 and 2 are already in the form
+  
+    function addPlayer() {
+      playerCount++;
+  
+      // Create label and input for the new player
+      const newLabel = document.createElement("label");
+      newLabel.setAttribute("for", "player" + playerCount);
+      newLabel.innerText = "Teilnehmer " + playerCount + ":";
+  
+      const newInput = document.createElement("input");
+      newInput.type = "text";
+      newInput.id = "player" + playerCount;
+      newInput.name = "player" + playerCount;
+      newInput.placeholder = "Ben Mustermann"
+      newInput.size = "40"
+  
+      // Create a line break
+      const lineBreak = document.createElement("br");
+  
+      // Append the new elements above the button container
+      const playersContainer = document.getElementById("players-container");
+      playersContainer.appendChild(newLabel);
+      playersContainer.appendChild(newInput);
+      playersContainer.appendChild(lineBreak);
+    }
+  
+    function submitForm(event) {
+      event.preventDefault();
+  
+      // Collect form data
+      const formData = new FormData(document.getElementById("myForm"));
+      const url = 'https://script.google.com/macros/s/AKfycbx2YWd_ebQZ1YaBnNQ0UDpRZ7dzkIDO-uiP4GZsf9Nu85rHF4TEYcjZrSlQA6htic0/exec';
+  
+      fetch(url, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+    })
+    .then(response => {
+        // Note: response is opaque
+        console.log("Request completed");
+    })
+    .catch(error => console.error('Error:', error));
+        }
+  </script>
+
     </div>
     <div class="BarBottom">
       <div class="BarBottomContent">
