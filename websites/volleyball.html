@@ -19,6 +19,16 @@
         bottom: 30px;
         padding: 15px;
       }
+<<<<<<< HEAD
+=======
+      /* Responsive design adjustments */
+      @media (max-width: 768px) {
+        #addPlayerBtn {
+          margin-right: -10%;
+        margin-top: -5%;
+        }
+      }
+>>>>>>> 6a27fbb3402fe9131bef1fd8f27466a0dcdf4a19
     </style>
 </head>
 <body>
@@ -71,7 +81,7 @@
         
             <!-- Buttons container -->
             <div id="buttons-container">
-              <div style="display: flex; justify-content: center; align-items: center; margin-left: -8%; margin-bottom: 20%;">
+              <div id="addPlayerBtn" style="display: flex; justify-content: center; align-items: center; margin-left: -8%; margin-bottom: 20%;">
                 <button type="button" onclick="addPlayer()" style="border: 0px;border-radius: 25px; width: 100%; max-width: 50px; background-color: #7A7A7A; font-size: 1.5rem; color: #FFFFFF; margin-left: 1%;">+</button>
                 <p style="font-size: 1rem; color: #757575; text-align: left;">(Weitere/n Mitspieler/-in hinzufügen)</p>
               </div>
@@ -142,7 +152,11 @@
       // Create label and input for the new player
       const newLabel = document.createElement("label");
       newLabel.setAttribute("for", "player" + playerCount);
+<<<<<<< HEAD
       newLabel.innerText = "Mitspieler/-in " + playerCount + ":";
+=======
+      newLabel.innerText = "Teilnehmer " + playerCount + ":";
+>>>>>>> 6a27fbb3402fe9131bef1fd8f27466a0dcdf4a19
   
       const newInput = document.createElement("input");
       newInput.type = "text";
