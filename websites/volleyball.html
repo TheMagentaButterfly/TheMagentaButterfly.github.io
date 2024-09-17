@@ -26,6 +26,50 @@
         margin-top: -5%;
         }
       }
+      /* Style for the optional star */
+      .optional-star {
+        position: relative;
+        display: inline-block;
+        margin-left: 5px;
+        cursor: pointer;
+        color: red; /* You can change the star color */
+      }
+
+      /* Tooltip container */
+      .optional-star .tooltip-text {
+        visibility: hidden;
+        width: 90px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        top: 100%; /* Position the tooltip below the star */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      /* Tooltip arrow */
+      .optional-star .tooltip-text::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+      }
+
+      /* Show the tooltip text on hover */
+      .optional-star:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
     </style>
 </head>
 <body>
@@ -44,43 +88,37 @@
 
         <div style="height: 20px;"></div>
 
-        <div style="text-align: center; display: flex; justify-content: center; align-items: center; margin-bottom: 15%;">
-            <div style="width: 85%; height: 100%; border-radius: 25px;background-color: #D66C60;">
-                <p style="text-align: center; color: #FFFFFF; background-color: #d66c6000; font-size: 1.8rem;">Pro Team werden mindestens 6 Mitspieler/-innen benötigt!</p>
-            </div> 
-        </div>
-
         <form id="myForm" onsubmit="submitForm(event)">
-            <label for="schoolclass">Vollständiger Klassenname:</label>
+            <label for="schoolclass">Vollständiger Klassenname:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="schoolclass" name="schoolclass" placeholder="TGG 12/2" required><br>
 
-            <label for="teacher">Name des Klassenlehrers:</label>
+            <label for="teacher">Name des Klassenlehrers:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="teacher" name="teacher" placeholder="Herr/Frau Mustermann" required><br>
 
-            <label for="teamName">Name des Teams:</label>
+            <label for="teamName">Name des Teams:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="teamName" name="teamName" placeholder="Die Wilden Kerle" required><br>
 
-            <label for="teamCaptain">Name des Team Kapitäns:</label>
+            <label for="teamCaptain">Name des Team Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="teamCaptain" name="teamCaptain" placeholder="Luis Mustermann" required><br>
 
-            <label for="captainEmail">Email Adresse des Kapitäns:</label>
+            <label for="captainEmail">Email Adresse des Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="email" id="captainEmail" name="captainEmail" placeholder="LuisMustermann@musterlu.de" required><br>
 
             <!-- This is where players will be added -->
             <div id="players-container">
-              <label for="player1">Mitspieler/-in 1:</label>
+              <label for="player1">Mitspieler/-in 1:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
               <input type="text" id="player1" name="player1" placeholder="Ben Mustermann" size="40"><br>
         
-              <label for="player2">Mitspieler/-in 2:</label>
+              <label for="player2">Mitspieler/-in 2:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
               <input type="text" id="player2" name="player2"  placeholder="Ben Mustermann" size="40"><br>
 
-              <label for="player3">Mitspieler/-in 3:</label>
+              <label for="player3">Mitspieler/-in 3:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
               <input type="text" id="player3" name="player3" placeholder="Ben Mustermann" size="40"><br>
 
-              <label for="player4">Mitspieler/-in 4:</label>
+              <label for="player4">Mitspieler/-in 4:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
               <input type="text" id="player4" name="player4" placeholder="Ben Mustermann" size="40"><br>
         
-              <label for="player5">Mitspieler/-in 5:</label>
+              <label for="player5">Mitspieler/-in 5:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
               <input type="text" id="player5" name="player5" placeholder="Ben Mustermann" size="40"><br>
             </div>
         

@@ -85,6 +85,32 @@ input {
     background-color: #EDEDED;
 }
 
+select {
+    width: 90%;
+    max-width: 400px;
+    margin: 10px auto;
+    display: block;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #EDEDED;
+    color: #000000;
+}
+
+option {
+    width: 90%;
+    max-width: 400px;
+    margin: 10px auto;
+    display: block;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #EDEDED;
+    color: #000000;
+}
+
 #buttons-container {
     text-align: center;
     padding: 20px;
