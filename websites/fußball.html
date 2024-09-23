@@ -70,6 +70,11 @@
         visibility: visible;
         opacity: 1;
       }
+      /* Hide the "Other" reason input field initially */
+      #ReasonContainer {
+        display: none;
+        margin-top: 10px;
+      }
     </style>
 </head>
 <body>
@@ -96,42 +101,41 @@
           <label for="teamName">Name des Teams:</label>
           <input type="text" id="teamName" name="teamName" placeholder="Die Wilden Kerle"><br>
 
-          <label for="teamCaptain">Name des Team Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+          <label for="teamCaptain">Name des Team Kapitäns (Vorname und Nachname):<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
           <input type="text" id="teamCaptain" name="teamCaptain" placeholder="Luis Mustermann" required><br>
 
           <label for="captainEmail">Email Adresse des Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
           <input type="email" id="captainEmail" name="captainEmail" placeholder="LuisMustermann@musterlu.de" required><br>
 
           <div>
-          <label for="Zeit">Bevorzugte Zeit: <br>(Nur mit Grund, sonst frei lassen!)
-        </label>
-          </div>
-            <div>
-              <select id="Zeit" name="Zeit" style="font-size: 1.2rem; text-align: center; border-radius: 10px;">
-                <option value="">Keine Auswahl</option>
-                <option value="Vormittags">Vormittags</option>
-                <option value="Nachmittags">Nachmittags</option>
-              </select>
+            <label for="Zeit">Bevorzugte Zeit (<b style="color: #FF0000;">Nur mit gutem Grund!</b>):</label>
             </div>
-            <br>
-
-          <label for="ZeitGrund">Grund für den zeiten Wechsel:</label>
-          <input type="text" id="ZeitGrund" name="ZeitGrund" placeholder="Optional"><br>
+            <select id="Zeit" name="Zeit" onchange="handleReasonChange()">
+              <option value="None">Wählen Sie eine Zeit</option>
+              <option value="Vormittags">Vormittags</option>
+              <option value="Nachmittags">Nachmittags</option>
+            </select><br>
+  
+            <!-- Hidden text field for "Other" reason -->
+            <div id="ReasonContainer">
+              <label for="ZeitGrund">Grund für den Zeitenwechsel:</label>
+              <input type="text" id="ZeitGrund" name="ZeitGrund" placeholder="Gebe hier den Grund ein">
+            </div><br>
           
           <div id="players-container">
-            <label for="player1">Mitspieler/-in 1:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="player1">Mitspieler/-in 1 (Vorname und Nachname):<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="player1" name="player1" placeholder="Ben Mustermann" size="40"><br>
       
-            <label for="player2">Mitspieler/-in 2:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="player2">Mitspieler/-in 2 (Vorname und Nachname):<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="player2" name="player2"  placeholder="Ben Mustermann" size="40"><br>
 
-            <label for="player3">Mitspieler/-in 3:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="player3">Mitspieler/-in 3 (Vorname und Nachname):<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="player3" name="player3" placeholder="Ben Mustermann" size="40"><br>
 
-            <label for="player4">Mitspieler/-in 4:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="player4">Mitspieler/-in 4 (Vorname und Nachname):<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="player4" name="player4" placeholder="Ben Mustermann" size="40"><br>
 
-            <label for="player5">Mitspieler/-in 5:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="player5">Mitspieler/-in 5 (Vorname und Nachname):<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="player5" name="player5" placeholder="Ben Mustermann" size="40"><br>
           </div>
       
@@ -151,7 +155,7 @@
         const submitButton = document.getElementById("submit-button");
         const popupMessage = document.getElementById("popupMessage");
 
-        const cooldownPeriod = 90 * 1000; // 90 seconds cooldown
+        const cooldownPeriod = 10 * 1000; // 90 seconds cooldown
         const cooldownKey = "submitCooldown";
 
         // Check if there's a cooldown active on page load
@@ -209,7 +213,7 @@
                 // Create label and input for the new player
                 const newLabel = document.createElement("label");
                 newLabel.setAttribute("for", "player" + playerCount);
-                newLabel.innerText = "Mitspieler/-in " + playerCount + ":";
+                newLabel.innerText = "Mitspieler/-in " + playerCount + " (Vorname und Nachname):";
 
                 const newInput = document.createElement("input");
                 newInput.type = "text";
@@ -244,7 +248,7 @@
                     formData.append("ZeitGrund", zeitGrundValue);
                 }
 
-                const url = 'https://script.google.com/macros/s/AKfycby0i5QTYgQoI6LD9Q0hhx_sT79_6o_yYdOyfxh7mlVmOCGE3z9RInimx_J_iw8cmTQ/exec';
+                const url = 'https://script.google.com/macros/s/AKfycbxE3V1-8OzZjpy4BNMKXP3Nfap24QleCLISPA9QvNR-ejuyBKLoN00S-EV47NuVf5iu/exec';
 
                 fetch(url, {
                     method: 'POST',
@@ -256,6 +260,20 @@
                     console.log("Request completed");
                 })
                 .catch(error => console.error('Error:', error));
+            }
+
+            function handleReasonChange() {
+                const Zeit = document.getElementById("Zeit").value;
+                const ReasonContainer = document.getElementById("ReasonContainer");
+
+                if (Zeit === "Vormittags") {
+                    ReasonContainer.style.display = "block";
+                } else if(Zeit === "Nachmittags"){
+                    ReasonContainer.style.display = "block";
+                }
+                else {
+                    ReasonContainer.style.display = "none";
+                }
             }
           </script>
     </div>
