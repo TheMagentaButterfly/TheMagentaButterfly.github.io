@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fußball</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <style>
+      #popupMessage {
+        visibility: hidden;
+        background-color: #4CAF50; /* Green */
+        color: white;
+        text-align: center;
+        border-radius: 4px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px;
+        padding: 15px;
+      }
+      /* Responsive design adjustments */
+      @media (max-width: 768px) {
+        #addPlayerBtn {
+          margin-right: -10%;
+          margin-top: -5%;
+        }
+      }
+      /* Style for the optional star */
+      .optional-star {
+        position: relative;
+        display: inline-block;
+        margin-left: 5px;
+        cursor: pointer;
+        color: red; /* You can change the star color */
+      }
+
+      /* Tooltip container */
+      .optional-star .tooltip-text {
+        visibility: hidden;
+        width: 90px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        top: 100%; /* Position the tooltip below the star */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      /* Tooltip arrow */
+      .optional-star .tooltip-text::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+      }
+
+      /* Show the tooltip text on hover */
+      .optional-star:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="image-container">
+            <img src="../images/pexels-bohlemedia-1884576.jpg" alt="Fußball">
+        </div>
+
+        <div class="FußballMiddle" style="display: flex; justify-content: center; align-items: center; margin-top: auto;">
+          <a href="../index.html"><button class="Menu_Buttons" style="color: #69C25B ; background-color: #FFFFFF; margin-top: auto;">Regeln</button></a>
+          <a href="fußball.html"><button class="Menu_Buttons" style="color: #FFFFFF; background-color: #00C73C; margin-top: auto;">Fußball</button></a>
+          <a href="volleyball.html"><button class="Menu_Buttons" style="color: #69C25B; background-color: #FFFFFF; margin-top: auto;">Volleyball</button></a>
+        </div>
+
+        <p><b>Anmeldeformular</b></p>
+
+        <form id="myForm" onsubmit="submitForm(event)">
+          <label for="schoolclass">Vollständiger Klassenname:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+          <input type="text" id="schoolclass" name="schoolclass" placeholder="TGG 12/2" required><br>
+
+          <label for="teacher">Name des Klassenlehrers:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+          <input type="text" id="teacher" name="teacher" placeholder="Herr/Frau Mustermann" required><br>
+
+          <label for="teamName">Name des Teams:</label>
+          <input type="text" id="teamName" name="teamName" placeholder="Die Wilden Kerle"><br>
+
+          <label for="teamCaptain">Name des Team Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+          <input type="text" id="teamCaptain" name="teamCaptain" placeholder="Luis Mustermann" required><br>
+
+          <label for="captainEmail">Email Adresse des Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+          <input type="email" id="captainEmail" name="captainEmail" placeholder="LuisMustermann@musterlu.de" required><br>
+
+          <div>
+          <label for="Zeit">Bevorzugte Zeit: <br>(Nur mit Grund, sonst frei lassen!)
+        </label>
+          </div>
+            <div>
+              <select id="Zeit" name="Zeit" style="font-size: 1.2rem; text-align: center; border-radius: 10px;">
+                <option value="">Keine Auswahl</option>
+                <option value="Vormittags">Vormittags</option>
+                <option value="Nachmittags">Nachmittags</option>
+              </select>
+            </div>
+            <br>
+
+          <label for="ZeitGrund">Grund für den zeiten Wechsel:</label>
+          <input type="text" id="ZeitGrund" name="ZeitGrund" placeholder="Optional"><br>
+          
+          <div id="players-container">
+            <label for="player1">Mitspieler/-in 1:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <input type="text" id="player1" name="player1" placeholder="Ben Mustermann" size="40"><br>
+      
+            <label for="player2">Mitspieler/-in 2:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <input type="text" id="player2" name="player2"  placeholder="Ben Mustermann" size="40"><br>
+
+            <label for="player3">Mitspieler/-in 3:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <input type="text" id="player3" name="player3" placeholder="Ben Mustermann" size="40"><br>
+
+            <label for="player4">Mitspieler/-in 4:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <input type="text" id="player4" name="player4" placeholder="Ben Mustermann" size="40"><br>
+
+            <label for="player5">Mitspieler/-in 5:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <input type="text" id="player5" name="player5" placeholder="Ben Mustermann" size="40"><br>
+          </div>
+      
+         <div id="buttons-container">
+          <div id="addPlayerBtn" style="display: flex; justify-content: center; align-items: center; margin-left: -8%; margin-bottom: 20%;">
+            <button type="button" onclick="addPlayer()" style="border: 0px;border-radius: 25px; width: 100%; max-width: 50px; background-color: #7A7A7A; font-size: 1.5rem; color: #FFFFFF; margin-left: 1%;">+</button>
+            <p style="font-size: 1rem; color: #757575; text-align: left;">(Weitere/n Mitspieler/-in hinzufügen)</p>
+          </div>
+          <button type="submit" id="submit-button" style="background-color: #333333; color: #FFFFFF; border-radius: 25px; border: 0px; width: 100%; max-width: 200px; font-size: 2rem;">Teilnehmen</button>
+        </div>
+      </form>
+
+      <div id="popupMessage">Anmeldung erfolgreich!</div>
+
+      <script>
+        const form = document.getElementById("myForm");
+        const submitButton = document.getElementById("submit-button");
+        const popupMessage = document.getElementById("popupMessage");
+
+        const cooldownPeriod = 90 * 1000; // 90 seconds cooldown
+        const cooldownKey = "submitCooldown";
+
+        // Check if there's a cooldown active on page load
+        const lastSubmitTime = localStorage.getItem(cooldownKey);
+        if (lastSubmitTime && new Date().getTime() - lastSubmitTime < cooldownPeriod) {
+            const remainingCooldown = cooldownPeriod - (new Date().getTime() - lastSubmitTime);
+            disableSubmitButton(remainingCooldown);
+        }
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Show popup
+            popupMessage.style.visibility = "visible";
+            setTimeout(() => {
+                popupMessage.style.visibility = "hidden";
+            }, 5000);
+
+            // Clear form inputs
+            form.reset();
+
+            // Disable submit button and start countdown
+            disableSubmitButton(cooldownPeriod);
+
+            // Store the current time in localStorage
+            localStorage.setItem(cooldownKey, new Date().getTime());
+        });
+
+        function disableSubmitButton(duration) {
+            submitButton.disabled = true;
+            let remainingTime = Math.floor(duration / 1000); // Ensure whole seconds
+
+            // Update button text every second
+            const countdownInterval = setInterval(() => {
+                remainingTime--;
+                submitButton.innerText = `Teilnehmen (${remainingTime}s)`;
+
+                // If the countdown is done, enable the button again
+                if (remainingTime <= 0) {
+                    clearInterval(countdownInterval);
+                    submitButton.innerText = "Teilnehmen";
+                    submitButton.disabled = false;
+                }
+            }, 1000);
+        }
+    </script>
+
+    </div>
+          <script>
+            let playerCount = 5; // Start from Player 2 since Player 1 and 2 are already in the form
+
+            function addPlayer() {
+                playerCount++;
+
+                // Create label and input for the new player
+                const newLabel = document.createElement("label");
+                newLabel.setAttribute("for", "player" + playerCount);
+                newLabel.innerText = "Mitspieler/-in " + playerCount + ":";
+
+                const newInput = document.createElement("input");
+                newInput.type = "text";
+                newInput.id = "player" + playerCount;
+                newInput.name = "player" + playerCount;
+                newInput.placeholder = "Ben Mustermann";
+                newInput.size = "40";
+
+                // Create a line break
+                const lineBreak = document.createElement("br");
+
+                // Append the new elements above the button container
+                const playersContainer = document.getElementById("players-container");
+                playersContainer.appendChild(newLabel);
+                playersContainer.appendChild(newInput);
+                playersContainer.appendChild(lineBreak);
+            }
+
+            function submitForm(event) {
+                event.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(document.getElementById("myForm"));
+                const zeitValue = document.getElementById("Zeit").value; // Dropdown value
+                const zeitGrundValue = document.getElementById("ZeitGrund").value; // Optional input field value
+
+                // If the optional fields are filled out, append them to formData
+                if (zeitValue) {
+                    formData.append("Zeit", zeitValue);
+                }
+                if (zeitGrundValue) {
+                    formData.append("ZeitGrund", zeitGrundValue);
+                }
+
+                const url = 'https://script.google.com/macros/s/AKfycby0i5QTYgQoI6LD9Q0hhx_sT79_6o_yYdOyfxh7mlVmOCGE3z9RInimx_J_iw8cmTQ/exec';
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                })
+                .then(response => {
+                    // Note: response is opaque
+                    console.log("Request completed");
+                })
+                .catch(error => console.error('Error:', error));
+            }
+          </script>
+    </div>
+    <div class="BarBottom">
+      <div class="BarBottomContent">
+        <div class="image-container" style="margin-left: 2.5%; margin-right: 2.5%;">
+          <img src="../images/pexels-pixabay-274506.jpg" alt="Volleyball" style="border-radius: 20px; width: 100%;">
+        </div>
+          <div style="height: 100%; max-height: 250px; width: 100%; max-width: 230px; margin-bottom: 12.5%; margin-top: 12.5%;">
+          <p style="color: #00E65C; text-align: left; margin-bottom: -20%;"><b>Kontaktpersonen</b></p>
+          <p style="text-align: left; margin-bottom: -25%;"><b>Sabrina Beck</b></p>
+          <p style="text-align: left; margin-bottom: -20%;">becksa@pmhs.de</p>
+          <p style="text-align: left; margin-bottom: -25%;"><b>Tobias Berndt</b></p>
+          <p style="text-align: left; margin-bottom: -20%;">berndtto@pmhs.de</p>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
