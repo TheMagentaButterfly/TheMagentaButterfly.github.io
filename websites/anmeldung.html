@@ -75,13 +75,12 @@
 <body>
     <div>
         <div class="image-container">
-            <img src="../images/pexels-delvis-2444852.jpg" alt="Volleyball">
+            <img src="../images/" alt="Skitag">
         </div>
 
         <div class="VolleyballMiddle" style="display: flex; justify-content: center; align-items: center; margin-top: auto;">
           <a href="../index.html"><button class="Menu_Buttons" style="color: #F0A959;background-color: #FFFFFF;  margin-top: auto;">Regeln</button></a>
-          <a href="fußball.html"><button class="Menu_Buttons" style="color: #F0A959;background-color: #FFFFFF;  margin-top: auto;">Fußball</button></a>
-          <a href="volleyball.html"><button class="Menu_Buttons" style="color: #FFFFFF; background-color: #FF9100;  margin-top: auto;">Volleyball</button></a>
+          <a href="anmeldung.html"><button class="Menu_Buttons" style="color: #FFFFFF; background-color: #FF9100;  margin-top: auto;">Anmeldung</button></a>
         </div>
         
         <p><b>Anmeldeformular</b></p>
@@ -162,33 +161,6 @@
       }
   </script>
   <script>
-    let playerCount = 5; // Start from Player 2 since Player 1 and 2 are already in the form
-  
-    function addPlayer() {
-      playerCount++;
-  
-      // Create label and input for the new player
-      const newLabel = document.createElement("label");
-      newLabel.setAttribute("for", "player" + playerCount);
-      newLabel.innerText = "Mitspieler/-in " + playerCount + ":";
-  
-      const newInput = document.createElement("input");
-      newInput.type = "text";
-      newInput.id = "player" + playerCount;
-      newInput.name = "player" + playerCount;
-      newInput.placeholder = "Ben Mustermann"
-      newInput.size = "40"
-  
-      // Create a line break
-      const lineBreak = document.createElement("br");
-  
-      // Append the new elements above the button container
-      const playersContainer = document.getElementById("players-container");
-      playersContainer.appendChild(newLabel);
-      playersContainer.appendChild(newInput);
-      playersContainer.appendChild(lineBreak);
-    }
-  
     function submitForm(event) {
       event.preventDefault();
   
@@ -213,14 +185,12 @@
     <div class="BarBottom">
       <div class="BarBottomContent">
         <div class="image-container" style="margin-left: 2.5%; margin-right: 2.5%;">
-          <img src="../images/pexels-alanmoraales-28037036.jpg" alt="Volleyball" style="border-radius: 20px; width: 100%;">
+          <img src="../images/" alt="Volleyball" style="border-radius: 20px; width: 100%;">
         </div>
         <div style="height: 100%; max-height: 250px; width: 100%; max-width: 230px; margin-bottom: 12.5%; margin-top: 12.5%;">
           <p style="color: #FFAA00; text-align: left; margin-bottom: -20%;"><b>Kontaktpersonen</b></p>
-          <p style="text-align: left; margin-bottom: -25%;"><b>Sabrina Beck</b></p>
-          <p style="text-align: left; margin-bottom: -20%;">becksa@pmhs.de</p>
-          <p style="text-align: left; margin-bottom: -25%;"><b>Tobias Berndt</b></p>
-          <p style="text-align: left; margin-bottom: -20%;">berndtto@pmhs.de</p>
+          <p style="text-align: left; margin-bottom: -25%;"><b>Sebastian Stephan</b></p>
+          <p style="text-align: left; margin-bottom: -20%;">ste@pmhs.de</p>
         </div>
       </div>
     </div>
