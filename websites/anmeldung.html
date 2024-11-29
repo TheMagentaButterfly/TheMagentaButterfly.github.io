@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volleyball</title>
+    <title>Anmeldung</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <style>
       #popupMessage {
@@ -95,40 +95,15 @@
             <label for="teacher">Name des Klassenlehrers:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="teacher" name="teacher" placeholder="Herr/Frau Mustermann" required><br>
 
-            <label for="teamName">Name des Teams:</label>
-            <input type="text" id="teamName" name="teamName" placeholder="Die Wilden Kerle"><br>
-
-            <label for="teamCaptain">Name des Team Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="teamCaptain">Vor- und Nachname:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="text" id="teamCaptain" name="teamCaptain" placeholder="Luis Mustermann" required><br>
 
-            <label for="captainEmail">Email Adresse des Kapitäns:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
+            <label for="captainEmail">Email Adresse:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
             <input type="email" id="captainEmail" name="captainEmail" placeholder="LuisMustermann@musterlu.de" required><br>
 
-            <!-- This is where players will be added -->
-            <div id="players-container">
-              <label for="player1">Mitspieler/-in 1:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
-              <input type="text" id="player1" name="player1" placeholder="Ben Mustermann" size="40"><br>
-        
-              <label for="player2">Mitspieler/-in 2:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
-              <input type="text" id="player2" name="player2"  placeholder="Ben Mustermann" size="40"><br>
-
-              <label for="player3">Mitspieler/-in 3:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
-              <input type="text" id="player3" name="player3" placeholder="Ben Mustermann" size="40"><br>
-
-              <label for="player4">Mitspieler/-in 4:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
-              <input type="text" id="player4" name="player4" placeholder="Ben Mustermann" size="40"><br>
-        
-              <label for="player5">Mitspieler/-in 5:<span class="optional-star">*<span class="tooltip-text">Notwendig</span></span></label>
-              <input type="text" id="player5" name="player5" placeholder="Ben Mustermann" size="40"><br>
-            </div>
-        
-            <!-- Buttons container -->
+           
             <div id="buttons-container">
-              <div id="addPlayerBtn" style="display: flex; justify-content: center; align-items: center; margin-left: -8%; margin-bottom: 20%;">
-                <button type="button" onclick="addPlayer()" style="border: 0px;border-radius: 25px; width: 100%; max-width: 50px; background-color: #7A7A7A; font-size: 1.5rem; color: #FFFFFF; margin-left: 1%;">+</button>
-                <p style="font-size: 1rem; color: #757575; text-align: left;">(Weitere/n Mitspieler/-in hinzufügen)</p>
-              </div>
-              <button type="submit" id="submit-button" style="background-color: #333333; color: #FFFFFF; border-radius: 25px; border: 0px; width: 100%; max-width: 200px; font-size: 2rem;">Teilnehmen</button>
+              <button type="submit" id="submit-button" style="background-color: #333333; color: #FFFFFF; border-radius: 25px; border: 0px; width: 100%; max-width: 200px; font-size: 2rem;">Anmelden</button>
             </div>
         </form>
     </div>
