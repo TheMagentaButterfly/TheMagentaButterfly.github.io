@@ -141,9 +141,9 @@ option {
 /* Style for each box */
 .RegelBox {
     background-color: #F0F0F0;      /* Example background color */
-    max-width: 300px;
+    max-width: 350px;
     width: 100%;                        /* Fixed width for each box */
-    max-height: 300px;                  /* Fixed height for each box */
+    max-height: 350px;                  /* Fixed height for each box */
     height: 100%;
     display: flex;
     justify-content: center;        /* Center text horizontally */
